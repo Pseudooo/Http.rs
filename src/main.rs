@@ -21,7 +21,6 @@ fn handle_client(stream: TcpStream) {
     let mut buffer = [0; 1024];
     sleep(Duration::from_secs(5));
     let _ = stream.read(&mut buffer);
-    let s = from_utf8(&buffer);
     match from_utf8(&buffer) {
         Ok(s) => {
             println!("Read: {s}");
