@@ -13,7 +13,7 @@ fn main() {
             Ok(stream) => {
                 thread::spawn(|| {
                     handle_client(stream);
-                });;
+                });
             },
             Err(_) => {
                 println!("Failed to accept connection");
