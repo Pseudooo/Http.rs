@@ -22,9 +22,14 @@ fn main() {
 fn handle_client(stream: TcpStream) {
     let mut buffered_reader = BufReader::new(stream);
     loop {
-        let mut string_buffer = &mut Default::default();
+        let string_buffer = &mut Default::default();
         match buffered_reader.read_line(string_buffer) {
             Ok(bytes_read) => {
+                if bytes_read == 0 {
+                    println!("Socket closed - quitting");
+                    return;
+                }
+
                 println!("Read {bytes_read} bytes");
                 println!("Value: {string_buffer}");
             }
